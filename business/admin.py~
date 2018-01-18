@@ -1,0 +1,9 @@
+from django.contrib import admin
+from .models import City_region, Categories, Enterprise_network, Enterprise, Service
+
+
+admin.site.register(City_region)
+admin.site.register(Categories)
+admin.site.register(Enterprise_network)
+admin.site.register(Enterprise)
+admin.site.register(Service)
