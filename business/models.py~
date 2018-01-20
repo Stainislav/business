@@ -25,7 +25,7 @@ class Enterprise_network(models.Model):
         return self.name
 
 # Предприятие имеет название, описание и ID (ID автоматическое).
-class Enterprise(models.Model):
+class Organisation(models.Model):
     # Название.
     name = models.CharField(max_length=200)
 

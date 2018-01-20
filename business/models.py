@@ -39,7 +39,7 @@ class Organisation(models.Model):
     city_region = models.ManyToManyField(District)  
     
     # Имеет список предоставляемых услуг\товаров с ценами.
-    #list_of_goods = models.ManyToManyField('Service')
+    goods = models.ManyToManyField('Service')
 
     def __str__(self):
         return self.name
