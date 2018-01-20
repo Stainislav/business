@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Район города имеет название и ID (ID автоматическое).
-class City_region(models.Model):
+class District(models.Model):
     # Название. 
     name = models.CharField(max_length=200)
     
@@ -36,10 +36,10 @@ class Enterprise(models.Model):
     enterprise_network = models.ForeignKey(Enterprise_network, on_delete=models.CASCADE)    
 
     # Имеет принадлежность к нескольким районам города, может быть представлена сразу в нескольких.
-    city_region = models.ManyToManyField(City_region)  
+    city_region = models.ManyToManyField(District)  
     
     # Имеет список предоставляемых услуг\товаров с ценами.
-    services_list = []
+    #list_of_goods = models.ManyToManyField('Service')
 
     def __str__(self):
         return self.name
@@ -53,14 +53,11 @@ class Service(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
 
     # Может продаваться в любом предприятии в сети.
-    enterprise = models.ManyToManyField(Enterprise)
+   # organisation_of_mine = models.ManyToManyField(Enterprise)
 
     # Цена может отличаться в зависимости от предприятия.
     price = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name
-
-            
-            
 
