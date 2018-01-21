@@ -41,6 +41,8 @@ class Organisation(models.Model):
     # Имеет список предоставляемых услуг\товаров с ценами.
     goods = models.ManyToManyField('Service')
 
+    price = 
+
     def __str__(self):
         return self.name
 
@@ -53,11 +55,12 @@ class Service(models.Model):
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
 
     # Может продаваться в любом предприятии в сети.
-   # organisation_of_mine = models.ManyToManyField(Enterprise)
+    # organisation_of_mine = models.ManyToManyField(Enterprise)
 
     # Цена может отличаться в зависимости от предприятия.
-    price = models.CharField(max_length=200)
+    enterprise = models.ManyToManyField(Organisation)
+    # price = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name
-
+    
