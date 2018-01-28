@@ -39,10 +39,14 @@ class Organisation(models.Model):
     city_region = models.ManyToManyField(District)  
     
     # Имеет список предоставляемых услуг\товаров с ценами.
-    goods = models.ManyToManyField('Service')
+    #goods = models.ManyToManyField('Service', through='Membership')
 
+    # Имеет список предоставляемых услуг\товаров с ценами.
+    goods = models.ManyToManyField('Service', through='Membership')
+    
     def __str__(self):
         return self.name
+
 
 # Услуга\товар имеет название, категорию и ID (ID автоматическое).
 class Service(models.Model):
@@ -52,13 +56,14 @@ class Service(models.Model):
     # Категория.
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
 
-    # Может продаваться в любом предприятии в сети.
-   # organisation_of_mine = models.ManyToManyField(Enterprise)
-
-    # Цена может отличаться в зависимости от предприятия.
-    enterprise = models.ManyToManyField(Organisation)
     # price = models.CharField(max_length=200)
     
     def __str__(self):
         return self.name
+
+
+class Membership(models.Model):
+    organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    price = models.CharField(max_length=200)
 

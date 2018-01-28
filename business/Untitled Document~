@@ -1,39 +1,8 @@
-from django.db import models
+>>> Nokia = Service.objects.create(name="Nokia", category=computer)
+>>> HTC = Service.objects.create(name="HTC", category='десктоп')
+>>> Stasova_178 = Organisation.objects.create(name="Стасова_178_МедиаплазаТЦ", enterprise_network = 'МТС')
 
-
-# Район города имеет название и ID (ID автоматическое).
-class District(models.Model):
-
-    # Название. 
-    name = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return self.name
-
-
-# Категория имеет название и ID (ID автоматическое).
-class Category(models.Model):
-    
-    # Название.
-    name = models.CharField(max_length=200)
-    
-    def __str__(self):
-        return self.name
-
-
-class Enterprise_network(models.Model):
-    
-    # Название.
-    name = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
-
-# Предприятие имеет название, описание и ID (ID автоматическое).
-class Organisation(models.Model):
-
-    # Название.
-    name = models.CharField(max_length=200)
+name = models.CharField(max_length=200)
 
     # Описание.
     description = models.CharField(max_length=200)
@@ -43,33 +12,53 @@ class Organisation(models.Model):
 
     # Имеет принадлежность к нескольким районам города, может быть представлена сразу в нескольких.
     city_region = models.ManyToManyField(District)  
+    
+    # Имеет список предоставляемых услуг\товаров с ценами.
+    #goods = models.ManyToManyField('Service', through='Membership')
 
     # Имеет список предоставляемых услуг\товаров с ценами.
     goods = models.ManyToManyField('Service', through='Membership')
     
     def __str__(self):
-        return self.name
 
-            
+
+
+
+>>> m1 = Membership(person=ringo, group=beatles,
+...     date_joined=date(1962, 8, 16),
+...     invite_reason="Needed a new drummer.")
+>>> m1.save()
+>>> beatles.members.all()
+<QuerySet [<Person: Ringo Starr>]>
+>>> ringo.group_set.all()
+<QuerySet [<Group: The Beatles>]>
+>>> m2 = Membership.objects.create(person=paul, group=beatles,
+...     date_joined=date(1960, 8, 1),
+...     invite_reason="Wanted to form a band.")
+>>> beatles.members.all()
+<QuerySet [<Person: Ringo Starr>, <Person: Paul McCartney>]>
+Unlike normal ma
+
+
+
+
+
 # Услуга\товар имеет название, категорию и ID (ID автоматическое).
 class Service(models.Model):
-
     # Название.
     name = models.CharField(max_length=200)
     
     # Категория.
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
- 
+
+    # price = models.CharField(max_length=200)
+    
     def __str__(self):
         return self.name
 
 
 class Membership(models.Model):
-
-    # Может продаваться в любом предприятии в сети.
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
-    
-    # Цена может отличаться в зависимости от предприятия.
     price = models.CharField(max_length=200)
 
