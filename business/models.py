@@ -14,6 +14,7 @@ class District(models.Model):
         verbose_name = "Район города"
         verbose_name_plural = "Районы города"
 
+
 # Категория имеет название и ID (ID автоматическое).
 class Category(models.Model):
     
@@ -35,6 +36,11 @@ class Enterprise_network(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Сеть предприятий"
+        verbose_name_plural = "Сети предприятий"
+
 
 # Предприятие имеет название, описание и ID (ID автоматическое).
 class Organisation(models.Model):
