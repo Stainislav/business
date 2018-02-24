@@ -40,12 +40,12 @@ def organization_list(request, format=None):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def organization_by_district(request, district_id, format=None):
+def organization_by_district(request, pk, format=None):
     """
     Retrieve, update or delete a code snippet.
     """
     try:
-        organisation = Organisation.objects.get(district_id=district_id)
+        organisation = Organisation.objects.get(pk=pk)
     except Organisation.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
