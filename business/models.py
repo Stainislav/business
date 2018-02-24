@@ -63,6 +63,10 @@ class Organisation(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Предприятие"
+        verbose_name_plural = "Предприятия"
+
             
 # Услуга\товар имеет название, категорию и ID (ID автоматическое).
 class Service(models.Model):
