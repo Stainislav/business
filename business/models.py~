@@ -12,6 +12,7 @@ class District(models.Model):
 
     class Meta:
         verbose_name = "Район города"
+        verbose_name_plural = "Районы города"
 
 # Категория имеет название и ID (ID автоматическое).
 class Category(models.Model):
