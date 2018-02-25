@@ -94,3 +94,7 @@ class Membership(models.Model):
     # Цена может отличаться в зависимости от предприятия.
     price = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name = "Связь 'товар-цена'"
+        verbose_name_plural = "Связи 'товар-цена'"
+
