@@ -98,3 +98,5 @@ class Membership(models.Model):
         verbose_name = "Связь 'товар-цена'"
         verbose_name_plural = "Связи 'товар-цена'"
 
+    def __str__(self):
+        return "Товар: %s Предприятие: %s" % (self.service.name, self.organisation.name)
