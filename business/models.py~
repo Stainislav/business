@@ -60,6 +60,8 @@ class Organisation(models.Model):
     # Имеет список предоставляемых услуг\товаров с ценами.
     goods = models.ManyToManyField('Service', through='Membership')
     
+    services_list = models.ManyToManyField('Service')
+
     def __str__(self):
         return self.name
 
@@ -99,4 +101,4 @@ class Membership(models.Model):
         verbose_name_plural = "Связи 'товар-цена'"
 
     def __str__(self):
-        return self.service.name
+        return "Товар: %s Предприятие: %s" % (self.service.name, self.organisation.name)
