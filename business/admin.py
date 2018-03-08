@@ -10,7 +10,15 @@ class OrganisationAdmin(admin.ModelAdmin):
         model = Organisation
 
 
-admin.site.register(District)
+class DistrictAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    list_filter = ['id', 'name']
+    search_fields = ['id', 'name']
+
+    class Meta:
+        model = District
+
+admin.site.register(District, DistrictAdmin)
 admin.site.register(Category)
 admin.site.register(Enterprise_network)
 admin.site.register(Organisation, OrganisationAdmin)
