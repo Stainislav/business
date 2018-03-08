@@ -39,8 +39,8 @@ class Enterprise_networkAdmin(admin.ModelAdmin):
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'category']
-    list_filter = ['id', 'name']
-    search_fields = ['id', 'name']
+    list_filter = ['id', 'name', 'category']
+    search_fields = ['id', 'name', 'category']
 
     class Meta:
         model = Service
