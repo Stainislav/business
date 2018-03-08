@@ -59,7 +59,6 @@ class Organisation(models.Model):
 
     # Имеет список предоставляемых услуг\товаров с ценами.
     goods = models.ManyToManyField('Service', through='Membership')
-    
 
     def __str__(self):
         return self.name

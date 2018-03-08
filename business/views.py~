@@ -1,4 +1,4 @@
-from .models import Organisation, Service, Membership
+from .models import Organisation, Service, Membership, Category
 from django.shortcuts import render
 
 # For API.
@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from business.models import Organisation
 from business.serializers import OrganizationSerializer
+from business.serializers import CategorySerializer
 
 
 def index(request):
@@ -63,5 +64,46 @@ def organization_by_district(request, pk, format=None):
     elif request.method == 'DELETE':
         organisation.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+'''
+@api_view(['GET', 'PUT', 'DELETE'])
+def service_by_category(request, pk, format=None):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        category = Category.objects.get(pk=pk)
+    except Category.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = CategorySerializer(Category)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = CategorySerializer(category, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        category.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+'''
+'''
+class CategoryList(generics.ListAPIView):
+    serializer_class = OrganizationSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        username = self.kwargs['username']
+        return Category.objects.filter(purchaser__username=username)
+
+'''
+
 
 
