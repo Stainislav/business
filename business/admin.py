@@ -36,9 +36,18 @@ class Enterprise_networkAdmin(admin.ModelAdmin):
     class Meta:
         model = Enterprise_network
 
+
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'category']
+    list_filter = ['id', 'name', 'category']
+    search_fields = ['id', 'name', 'category']
+
+    class Meta:
+        model = Service
+
 admin.site.register(District, DistrictAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Enterprise_network, Enterprise_networkAdmin)
 admin.site.register(Organisation, OrganisationAdmin)
-admin.site.register(Service)
+admin.site.register(Service, ServiceAdmin)
 admin.site.register(Membership)
