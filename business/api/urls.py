@@ -1,3 +1,12 @@
+from django.conf.urls import url
+from django.contrib import admin
+
+from .views import (OrganisationListAPIView)
+
+
+urlpatterns = [
+    url(r'^$', OrganisationListAPIView.as_view(), name='list'),
+]  
 '''
 from django.conf.urls import url
 

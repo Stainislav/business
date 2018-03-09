@@ -1,3 +1,13 @@
+from rest_framework.generics import ListAPIView
+
+from business.models import Organisation
+from .serializers import OrganisationSerializer
+
+class OrganisationListAPIView(ListAPIView):
+    queryset = Organisation.objects.all()
+    serializer_class = OrganisationSerializer
+
+'''
 from .models import Organisation, Service, Membership, Category
 from django.shortcuts import render
 
@@ -53,7 +63,7 @@ def organization_by_district(request, pk, format=None):
         organisation.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-'''
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def service_by_category(request, pk, format=None):
     """
@@ -78,8 +88,8 @@ def service_by_category(request, pk, format=None):
     elif request.method == 'DELETE':
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-'''
-'''
+
+
 class CategoryList(generics.ListAPIView):
     serializer_class = OrganizationSerializer
 

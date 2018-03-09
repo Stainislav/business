@@ -1,3 +1,13 @@
+from rest_framework.generics import ListAPIView
+
+from business.models import Organisation
+from .serializers import OrganisationSerializer
+
+class OrganisationListAPIView(ListAPIView):
+    queryset = Organisation.objects.all()
+    serializer_class = OrganisationSerializer
+
+'''
 from .models import Organisation, Service, Membership, Category
 from django.shortcuts import render
 
@@ -8,18 +18,6 @@ from rest_framework.response import Response
 from business.models import Organisation
 from business.serializers import OrganizationSerializer
 #from business.serializers import CategorySerializer
-
-
-def index(request):
-    enterprise_list = Organisation.objects.order_by('-city_region')[:5]
-    context = {'enterprise_list': enterprise_list}
-    return render(request, 'business/index.html', context)
-
-
-def services(request):
-    services = Service.objects
-    context = {'services': services}
-    return render(request, 'business/services.html', context)
 
 
 @api_view(['GET', 'POST'])

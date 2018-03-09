@@ -1,10 +1,11 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from business.models import Organisation
+from business.models import Category
 
-class OrganisationSerializer(ModelSerializer):
+class OrganizationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Organisation
-        fields = ('id', 'name', 'description', 'enterprise_network', 'city_region', 'goods')
+        fields = ('name', 'description', 'enterprise_network', 'city_region', 'goods')
 
 
 '''
