@@ -8,12 +8,12 @@ class OrganizationSerializer(serializers.ModelSerializer):
         fields = ('name', 'description', 'enterprise_network', 'city_region', 'goods')
 
 
-
+'''
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('name')
-
+'''
 
 '''
 from business.models import Membership

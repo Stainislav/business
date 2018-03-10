@@ -40,7 +40,6 @@ REST_FRAMEWORK = {
 # Application definition
 
 INSTALLED_APPS = [
-    'snippets.apps.SnippetsConfig',
     'rest_framework',
     'business.apps.BusinessConfig',
     'django.contrib.admin',

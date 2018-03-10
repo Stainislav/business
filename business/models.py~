@@ -1,10 +1,9 @@
 from django.db import models
 
 
-# Район города имеет название и ID (ID автоматическое).
-class District(models.Model):
-
-    # Название. 
+# Район города.
+class District(models.Model): 
+    
     name = models.CharField(max_length=200)
     
     def __str__(self):
@@ -15,10 +14,9 @@ class District(models.Model):
         verbose_name_plural = "Районы города"
 
 
-# Категория имеет название и ID (ID автоматическое).
+# Категория.
 class Category(models.Model):
     
-    # Название.
     name = models.CharField(max_length=200)
     
     def __str__(self):
@@ -29,9 +27,9 @@ class Category(models.Model):
         verbose_name_plural = "Категории"
 
 
+# Сеть предприятий.
 class Enterprise_network(models.Model):
     
-    # Название.
     name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -42,22 +40,14 @@ class Enterprise_network(models.Model):
         verbose_name_plural = "Сети предприятий"
 
 
-# Предприятие имеет название, описание и ID (ID автоматическое).
+# Предприятие.
 class Organisation(models.Model):
 
-    # Название.
     name = models.CharField(max_length=200)
-
-    # Описание.
-    description = models.CharField(max_length=200)
-
-    # Принадлежит одной из сети предприятий. 
+    description = models.CharField(max_length=200) 
     enterprise_network = models.ForeignKey(Enterprise_network, on_delete=models.CASCADE)    
-
-    # Имеет принадлежность к нескольким районам города, может быть представлена сразу в нескольких.
     city_region = models.ManyToManyField(District)  
 
-    # Имеет список предоставляемых услуг\товаров с ценами.
     goods = models.ManyToManyField('Service', through='Membership')
 
     def __str__(self):
@@ -68,13 +58,11 @@ class Organisation(models.Model):
         verbose_name_plural = "Предприятия"
 
             
-# Услуга\товар имеет название, категорию и ID (ID автоматическое).
+# Услуга.
 class Service(models.Model):
 
-    # Название.
     name = models.CharField(max_length=200)
     
-    # Категория.
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
  
     def __str__(self):
@@ -84,14 +72,12 @@ class Service(models.Model):
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
 
-
+# Связь 'товар-цена'
 class Membership(models.Model):
 
-    # Может продаваться в любом предприятии в сети.
     organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE)
     service = models.ForeignKey(Service, on_delete=models.CASCADE)
     
-    # Цена может отличаться в зависимости от предприятия.
     price = models.CharField(max_length=200)
 
     class Meta:
