@@ -18,5 +18,5 @@ class OrganisationListAPIView(ListAPIView):
 class OrganisationDetailAPIView(RetrieveAPIView):
     queryset = Organisation.objects.all()
     serializer_class = OrganisationSerializer
-    lookup_field = 'city_region'
+    lookup_field = 'district'
     lookup_url_kwarg = 'district_id'
