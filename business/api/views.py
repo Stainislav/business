@@ -1,13 +1,43 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.filters import (
+    SearchFilter,
+    OrderingFilter
+    )
+
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from business.models import Organisation
 from .serializers import OrganisationSerializer
 
+
 class OrganisationListAPIView(ListAPIView):
     queryset = Organisation.objects.all()
     serializer_class = OrganisationSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['id', 'name', 'description', 'goods__name']
+
+class OrganisationDetailAPIView(RetrieveAPIView):
+    queryset = Organisation.objects.all()
+    serializer_class = OrganisationSerializer
+    lookup_field = 'city_region'
+    lookup_url_kwarg = 'district_id'
+    
+
+
+
 
 '''
+def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        city_region = self.kwargs['city_region']
+        return Organisation.objects.filter(organisation__city_region=city_region)
+
+
+
+
+
 from .models import Organisation, Service, Membership, Category
 from django.shortcuts import render
 
