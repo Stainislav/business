@@ -45,8 +45,8 @@ class Organisation(models.Model):
 
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200) 
-    enterprise_network = models.ForeignKey(Enterprise_network, on_delete=models.CASCADE)    
-    city_region = models.ManyToManyField(District)  
+    organization_network = models.ForeignKey(Enterprise_network, on_delete=models.CASCADE)    
+    district = models.ManyToManyField(District)  
 
     goods = models.ManyToManyField('Service', through='Membership')
 
@@ -71,6 +71,7 @@ class Service(models.Model):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+
 
 # Связь 'товар-цена'
 class Membership(models.Model):
