@@ -3,8 +3,8 @@ from .models import District, Category, Enterprise_network, Organisation, Servic
 
 class OrganisationAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'description']
-    list_filter = ['name']
-    search_fields = ['name']
+    list_filter = ['id', 'name', 'description']
+    search_fields = ['id', 'name', 'description']
 
     class Meta:
         model = Organisation

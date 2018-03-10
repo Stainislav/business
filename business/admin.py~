@@ -45,9 +45,19 @@ class ServiceAdmin(admin.ModelAdmin):
     class Meta:
         model = Service
 
+
+class MembershipAdmin(admin.ModelAdmin):
+    list_display = ['id', 'organisation', 'service', 'price']
+    list_filter = ['id', 'organisation', 'service', 'price']
+    search_fields = ['id', 'organisation', 'service', 'price']
+
+    class Meta:
+        model = Membership
+
+
 admin.site.register(District, DistrictAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Enterprise_network, Enterprise_networkAdmin)
 admin.site.register(Organisation, OrganisationAdmin)
 admin.site.register(Service, ServiceAdmin)
-admin.site.register(Membership)
+admin.site.register(Membership, MembershipAdmin)
