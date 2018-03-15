@@ -13,7 +13,8 @@ class OrganisationListAPIView(ListAPIView):
     queryset = Organisation.objects.all()
     serializer_class = OrganisationSerializer
     filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ['id', 'name', 'description', 'goods__name']
+    search_fields = ['id', 'name', 'description', 'goods__name', 'membership__price', 'membership__service__category__name']
+    ordering_fields = ['id', 'name', 'description', 'goods__name', 'membership__price', 'membership__service__category__name']
 
 class OrganisationDetailAPIView(RetrieveAPIView):
     queryset = Organisation.objects.all()
