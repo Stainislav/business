@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import District, Category, Enterprise_network, Organisation, Service, Membership
+from .models import District, Category, EnterpriseNetwork, Organization, Goods, GoodsPriceConnection
 
-class OrganisationAdmin(admin.ModelAdmin):
+class OrganizationAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'description']
     list_filter = ['id', 'name', 'description']
     search_fields = ['id', 'name', 'description']
 
     class Meta:
-        model = Organisation
+        model = Organization
 
 
 class DistrictAdmin(admin.ModelAdmin):
@@ -28,36 +28,36 @@ class CategoryAdmin(admin.ModelAdmin):
         model = Category
 
 
-class Enterprise_networkAdmin(admin.ModelAdmin):
+class EnterpriseNetworkAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
     list_filter = ['id', 'name']
     search_fields = ['id', 'name']
 
     class Meta:
-        model = Enterprise_network
+        model = EnterpriseNetwork
 
 
-class ServiceAdmin(admin.ModelAdmin):
+class GoodsAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'category']
     list_filter = ['id', 'name', 'category']
     search_fields = ['id', 'name', 'category']
 
     class Meta:
-        model = Service
+        model = Goods
 
 
-class MembershipAdmin(admin.ModelAdmin):
-    list_display = ['id', 'organisation', 'service', 'price']
-    list_filter = ['id', 'organisation', 'service', 'price']
-    search_fields = ['id', 'organisation', 'service', 'price']
+class GoodsPriceConnectionAdmin(admin.ModelAdmin):
+    list_display = ['id', 'organization', 'goods', 'price']
+    list_filter = ['id', 'organization', 'goods', 'price']
+    search_fields = ['id', 'organization', 'goods', 'price']
 
     class Meta:
-        model = Membership
+        model = GoodsPriceConnection
 
 
 admin.site.register(District, DistrictAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Enterprise_network, Enterprise_networkAdmin)
-admin.site.register(Organisation, OrganisationAdmin)
-admin.site.register(Service, ServiceAdmin)
-admin.site.register(Membership, MembershipAdmin)
+admin.site.register(EnterpriseNetwork, EnterpriseNetworkAdmin)
+admin.site.register(Organization, OrganizationAdmin)
+admin.site.register(Goods, GoodsAdmin)
+admin.site.register(GoodsPriceConnection, GoodsPriceConnectionAdmin)

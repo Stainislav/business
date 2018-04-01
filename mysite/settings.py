@@ -39,7 +39,6 @@ REST_FRAMEWORK = {
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
     'business.apps.BusinessConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third-party apps.
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
