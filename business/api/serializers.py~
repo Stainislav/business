@@ -1,20 +1,21 @@
 from rest_framework.serializers import ModelSerializer
 from rest_framework.serializers import StringRelatedField
 
-from business.models import Organisation, Service
+from business.models import Organization, Goods
 
 class OrganisationSerializer(ModelSerializer):
     goods = StringRelatedField(many=True)
-    
+    district = StringRelatedField(many=True)
+
     class Meta:
-        model = Organisation
+        model = Organization
         fields = ('id', 'name', 'description', 'organization_network', 'district', 'goods')
 
 
-class ServiceSerializer(ModelSerializer):
+class GoodsSerializer(ModelSerializer):
     
     class Meta:
-        model = Service
+        model = Goods
         fields = ('id', 'name', 'category')
  
 
