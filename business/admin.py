@@ -1,5 +1,13 @@
 from django.contrib import admin
-from .models import District, Category, EnterpriseNetwork, Organization, Goods, GoodsPriceConnection
+from .models import (
+    District,
+    Category,
+    EnterpriseNetwork,
+    Organization,
+    Goods,
+    GoodsPriceConnection
+    )
+
 
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'description']
@@ -61,3 +69,4 @@ admin.site.register(EnterpriseNetwork, EnterpriseNetworkAdmin)
 admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Goods, GoodsAdmin)
 admin.site.register(GoodsPriceConnection, GoodsPriceConnectionAdmin)
+

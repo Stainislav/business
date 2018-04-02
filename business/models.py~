@@ -2,11 +2,11 @@ from django.db import models
 
 
 # Район города.
-class District(models.Model): 
+class District(models.Model):
 
-    id = models.AutoField(primary_key=True)    
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
-    
+
     def __str__(self):
         return self.name
 
@@ -17,10 +17,10 @@ class District(models.Model):
 
 # Категория.
 class Category(models.Model):
-    
+
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
-    
+
     def __str__(self):
         return self.name
 
@@ -32,7 +32,7 @@ class Category(models.Model):
 # Сеть предприятий.
 class EnterpriseNetwork(models.Model):
 
-    id = models.AutoField(primary_key=True)    
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -48,9 +48,9 @@ class Organization(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
-    description = models.TextField(max_length=200) 
-    organization_network = models.ForeignKey(EnterpriseNetwork, on_delete=models.CASCADE)    
-    district = models.ManyToManyField(District)  
+    description = models.TextField(max_length=200)
+    organization_network = models.ForeignKey(EnterpriseNetwork, on_delete=models.CASCADE)
+    district = models.ManyToManyField(District)
 
     goods = models.ManyToManyField('Goods', through='GoodsPriceConnection')
 
@@ -61,14 +61,14 @@ class Organization(models.Model):
         verbose_name = "Предприятие"
         verbose_name_plural = "Предприятия"
 
-            
+
 # Товары.
 class Goods(models.Model):
 
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)    
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
- 
+    name = models.CharField(max_length=200)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
     def __str__(self):
         return self.name
 
@@ -83,11 +83,8 @@ class GoodsPriceConnection(models.Model):
     id = models.AutoField(primary_key=True)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE)
-    
+
     price = models.CharField(max_length=200)
-    
-    #def __str__(self):
-     #   return "Товар: %s Предприятие: %s" % (self.goods.name, self.organization.name)
 
     class Meta:
         verbose_name = "Связь 'товар-цена'"

@@ -21,9 +21,9 @@ class OrganizationListAPIView(ListAPIView):
 # Показывает список предприятий, отфильтрованных по выбранному району.
 class OrganizationByDistrictAPIView(ListAPIView):
     serializer_class = OrganizationSerializer
-  
+
     def get_queryset(self):
-        
+
         district = self.kwargs['district_id']
         return Organization.objects.filter(district__id=district)
 
@@ -34,7 +34,7 @@ class GoodsDetailAPIView(RetrieveAPIView):
     serializer_class = GoodsSerializer
     lookup_field = 'id'
     lookup_url_kwarg = 'goods_id'
-    
+
 
 # Детальная информация по предприятию.
 class OrganizationDetailAPIView(RetrieveAPIView):

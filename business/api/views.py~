@@ -28,7 +28,7 @@ class OrganizationByDistrictAPIView(ListAPIView):
         return Organization.objects.filter(district__id=district)
 
 
-# Подробная информация по конкретному товару.
+# Детальная информация по товару.
 class GoodsDetailAPIView(RetrieveAPIView):
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
@@ -36,7 +36,7 @@ class GoodsDetailAPIView(RetrieveAPIView):
     lookup_url_kwarg = 'goods_id'
     
 
-# Подробная информация по конкретному предприятию.
+# Детальная информация по предприятию.
 class OrganizationDetailAPIView(RetrieveAPIView):
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer

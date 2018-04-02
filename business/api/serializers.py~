@@ -3,7 +3,7 @@ from rest_framework.serializers import StringRelatedField
 
 from business.models import Organization, Goods
 
-class OrganisationSerializer(ModelSerializer):
+class OrganizationSerializer(ModelSerializer):
     goods = StringRelatedField(many=True)
     district = StringRelatedField(many=True)
 
@@ -13,9 +13,8 @@ class OrganisationSerializer(ModelSerializer):
 
 
 class GoodsSerializer(ModelSerializer):
-    
+
     class Meta:
         model = Goods
         fields = ('id', 'name', 'category')
- 
 
